@@ -1,2 +1,45 @@
-node_modules/
+
+
+# Environment variables
 .env
+
+# Node.js specific ignores (common to most Node.js projects)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# General log files and directories
+*.log
+logs/
+
+# Build and temporary output directories (global rules)
+dist/
+build/
+out/
+dist-ssr
+*.local
+
+# OS-specific files
+
+Thumbs.db    # Windows
+desktop.ini  # Windows
+
+# Editor and IDE directories/files
+.vscode/
+!.vscode/extensions.json 
+.idea/ # JetBrains IDEs (IntelliJ, WebStorm, etc.)
+
+# Project-specific ignores for monorepo structure (explicit paths)
+# These paths are relative to the repository root (SkillupProgramming/)
+
+# Backend specific ignores
+/BackendRevision/node_modules/
+
+# Frontend specific ignores (for Project_Frontend/BlogPost_Frontend/)
+/Project_Frontend/BlogPost_Frontend/node_modules/
+/Project_Frontend/BlogPost_Frontend/build/ 
+#/Project_Frontend/BlogPost_Frontend/dist/ # <<< COMMENT/DELETE IF NOT USED
+#/Project_Frontend/BlogPost_Frontend/out/  # <<< COMMENT/DELETE IF NOT USED

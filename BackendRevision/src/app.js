@@ -3,11 +3,24 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser'
 
 const app=express();
+const allowedOriginsString = process.env.CORS_ORIGIN;
+const allowedOrigins = allowedOriginsString ? allowedOriginsString.split(',').map(s => s.trim()) : [];
+
+// app.use(cors({
+//     origin:process.env.CORS_ORIGIN,
+//     credentials:true
+// }))
 
 app.use(cors({
-    origin:process.env.CORS_ORIGIN,
-    credentials:true
-}))
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true
+}));
 app.use(express.json(
     {
         limit:"16kb"

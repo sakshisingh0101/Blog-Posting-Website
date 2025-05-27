@@ -17,6 +17,7 @@ import { RouterProvider } from 'react-router-dom'
 import { store } from './authStore/store.js'
 import { useDispatch } from 'react-redux'
 import { addUserData,login_status_toggle } from './authStore/authSlice.js'
+import axios from 'axios'
 
 
 if (import.meta.env.VITE_BACKEND_URL) {

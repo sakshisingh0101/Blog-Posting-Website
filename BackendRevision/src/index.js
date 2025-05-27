@@ -31,8 +31,9 @@ dbconnect()
     console.log("Error :: " ,error);
     throw error;
   })
-  app.listen(process.env.PORT||8000,()=>{
-    console.log(`The App is listening on ${process.env.PORT}`)
+  const port=process.env.PORT||8000
+  app.listen(port,()=>{
+    console.log(`The App is listening on ${port}`)
   })
 })
 .catch((error)=>{

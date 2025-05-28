@@ -1,10 +1,12 @@
 import React ,{useEffect}from 'react'
 import {useDispatch} from 'react-redux'
 import { addUserData, login_status_toggle } from '../../authStore/authSlice';
-import {Link} from 'react-router-dom'
+import {Link, useSearchParams} from 'react-router-dom'
 import axios from 'axios'
+import { set } from 'mongoose';
 function Logout(){
   const dispatch=useDispatch()
+  const [isLogout,setIsLogout]=useState(false);
   useEffect(()=>{
     const handleLogout=async()=>{
         try {
@@ -12,14 +14,20 @@ function Logout(){
             localStorage.removeItem("userData");
             dispatch(login_status_toggle(false))
             dispatch(addUserData(null))
+            setIsLogout(true);
             alert("Logout Successfully ")
         } catch (error) {
             console.log("Error: ",error);
+            setIsLogout(false);
             alert("Logout failed")
         }
       }
       handleLogout();
   },[])
+  if(!isLogout)
+  {
+    return (<H1>Logout failed</H1>);
+  }
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 flex flex-col items-center justify-center px-4">
       <div className="bg-gray-800 shadow-2xl rounded-3xl p-10 max-w-md w-full text-center border border-gray-700">

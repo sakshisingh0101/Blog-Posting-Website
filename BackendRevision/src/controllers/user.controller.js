@@ -88,7 +88,8 @@ const registerUser=asyncHandler(async (req , res)=>{
     const {accessToken,refreshToken}=await generateAccessAndRefreshToken(user._id)
     const option={
         httpOnly:true,
-        server:false
+        server:process.env.NODE_ENV==='production',
+        sameSite:'None'
     }
 
     const usercreated=await User.findById(user._id).select(
@@ -158,8 +159,8 @@ const loginUser=asyncHandler(async(req,res)=>{
 
     const option={
         httpOnly:true,
-        server:false,
-        sameSite: "lax"
+        server:process.env.NODE_ENV === 'production',
+        sameSite: 'None'
     }
 
     res.status(200)

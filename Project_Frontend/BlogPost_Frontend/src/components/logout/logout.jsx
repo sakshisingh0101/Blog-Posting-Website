@@ -3,7 +3,7 @@ import {useDispatch} from 'react-redux'
 import { addUserData, login_status_toggle } from '../../authStore/authSlice';
 import {Link, useSearchParams} from 'react-router-dom'
 import axios from 'axios'
-import { set } from 'mongoose';
+
 function Logout(){
   const dispatch=useDispatch()
   const [isLogout,setIsLogout]=useState(false);

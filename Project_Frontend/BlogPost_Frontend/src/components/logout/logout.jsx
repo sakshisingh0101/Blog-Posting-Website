@@ -26,7 +26,7 @@ function Logout(){
   },[])
   if(!isLogout)
   {
-    return (<H1>Logout failed</H1>);
+    return (<h1>Logout failed</h1>);
   }
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 flex flex-col items-center justify-center px-4">

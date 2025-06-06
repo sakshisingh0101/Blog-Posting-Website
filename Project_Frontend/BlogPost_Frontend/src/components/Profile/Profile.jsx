@@ -8,7 +8,7 @@ function Profile(){
     
     // const [isLogin,setIsLogin]=useState(false);
     const isLogin=useSelector(state=>state.auth.login_status)
-    const user=useSelector(state => state.auth.userData.data)
+    const user=useSelector(state => state.auth.userData)
 
         console.log("isLogin:", isLogin);
     console.log("User data from Redux:", user); 

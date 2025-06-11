@@ -3,11 +3,14 @@ import {useDispatch} from 'react-redux'
 import { addUserData, login_status_toggle } from '../../authStore/authSlice';
 import {Link, useSearchParams} from 'react-router-dom'
 import axios from 'axios'
+import './loader.css'
 
 function Logout(){
   const dispatch=useDispatch()
   const [isLogout,setIsLogout]=useState(false);
+  const [loader,setLoader]=useState(false);
   useEffect(()=>{
+    setLoader(true);
     const handleLogout=async()=>{
         try {
             const response=await axios.post("/api/v1/users/logout",{ withCredentials: true });
@@ -20,10 +23,19 @@ function Logout(){
             console.log("Error: ",error);
             setIsLogout(false);
             alert("Logout failed")
-        }
+        }finally{setLoader(false)}
       }
       handleLogout();
   },[])
+    if(loader)
+{
+    return  <>
+       <div className="loader-wrapper">
+    <div className="loader"></div>
+  </div>
+      
+    </>
+}
   if(!isLogout)
   {
     return (<h1>Logout failed</h1>);

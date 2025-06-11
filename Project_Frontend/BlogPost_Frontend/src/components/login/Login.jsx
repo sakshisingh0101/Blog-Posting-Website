@@ -8,6 +8,7 @@ function Login(){
     const [userName,setUserName]=useState("");
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
+    const [loaded,setLoaded]=useState(false);
     // const formData=new FormData();
     const dispatch=useDispatch();
     const navigate=useNavigate();
@@ -15,6 +16,7 @@ function Login(){
         // formData.append("userName",userName);
         // formData.append("email",email);
         // formData.append("password",password);
+        setLoaded(true)
 
         try {
             const response=await axios.post("/api/v1/users/login",{userName,email,password}, { headers: {
@@ -34,7 +36,7 @@ function Login(){
             dispatch(login_status_toggle(false))
             alert("Login failed");
 
-        }
+        }finally{setLoaded(false)}
         
     }
 return (<>
@@ -57,7 +59,7 @@ return (<>
         }}/>
       
 
-        <button type="submit">Login</button>
+        <button type="submit" disabled={loaded}>{loaded? 'Logging in ' : 'Login'}</button>
 
        
       </form>

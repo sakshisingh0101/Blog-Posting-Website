@@ -4,12 +4,14 @@ function AddPost()
 {   const [title,setTitle]=useState();
     const [content,setContent]=useState();
     const [postImage,setImage]=useState();
+    const [loaded,setLoaded]=useState(false);
     const formdata=new FormData();
     const handleSubmit=async(e)=>{
      
        formdata.append("title",title)
        formdata.append("content",content)
        formdata.append("postImage",postImage);
+       setLoaded(true)
        try {
         const response=await axios.post("/api/v1/blogs/blogPost",formdata,
         { headers: {
@@ -24,7 +26,7 @@ function AddPost()
        } catch (error) {
         console.log("Error : " , error);
         alert("Some error has occured")
-       }
+       }finally {setLoaded(false)}
     }
     return (
         <>
@@ -73,8 +75,9 @@ function AddPost()
             <button
               type="submit"
               className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-3 px-6 rounded-xl shadow-md transition duration-300"
+              disabled={loaded}
             >
-              Publish Post
+              {loaded? 'Publishing Post' : 'Publish Post'}
             </button>
           </div>
         </form>

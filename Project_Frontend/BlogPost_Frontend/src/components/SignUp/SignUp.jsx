@@ -17,6 +17,7 @@ function SignUp(){
     const [coverImage,setCoverImage]=useState(null);
     const dispatch=useDispatch();
     const navigate=useNavigate();
+    const [loaded,setLoaded]=useState(false)
 
     const formData=new FormData();
     const handleSubmit=async()=>{
@@ -29,6 +30,7 @@ function SignUp(){
      formData.append("age",age);
      formData.append("avtar",avtar);
      formData.append("coverImage",coverImage);
+     setLoaded(true);
 
      try {
         const response=await axios.post("/api/v1/users/register",formData,
@@ -46,7 +48,7 @@ function SignUp(){
         console.log("Error: ", error)
         dispatch(login_status_toggle(false)) 
         alert("SignUp failed")
-     }
+     }finally{setLoaded(false)}
      
 
     }
@@ -79,7 +81,7 @@ function SignUp(){
         }} accept='image/*'/>
         <input type="file" name="coverImage" onChange={e=>(setCoverImage(e.target.files[0])) } accept="image/*" />
 
-        <button type="submit">Sign Up</button>
+        <button type="submit" disabled={loaded}>{loaded? 'Sign up in process' : 'Sign up'}</button>
 
         <p className="signin-link">
           Already have an account? <Link to="/login" className="hover:underline">Log in</Link>

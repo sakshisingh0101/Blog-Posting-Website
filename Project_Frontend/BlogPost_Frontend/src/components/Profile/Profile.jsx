@@ -27,19 +27,19 @@ function Profile(){
      <div className="profile-container">
       <div className="cover-photo">
         
-        <img src={ user.coverImage? user.coverImage : null} alt="Cover" />
+        <img src={ user.data.coverImage? user.data.coverImage : null} alt="Cover" />
       </div>
       <div className="profile-content">
         <div className="avatar-box">
-          <img src={user.avtar} alt="Avatar" />
+          <img src={user.data.avtar} alt="Avatar" />
         </div>
-        <h2>Username: {user.userName}</h2>
-        <p className="fullname">FullName: {user.firstName} {user.lastName}</p>
-        <p className="email">Email: {user.email}</p>
-        <p className="age">Age: {user.age}</p>
-        <Link to={`/all_post`}>All Posts </Link>
+        <h2>Username: {user.data.userName}</h2>
+        <p className="fullname">FullName: {user.data.firstName} {user.data.lastName}</p>
+        <p className="email">Email: {user.data.email}</p>
+        <p className="age">Age: {user.data.age}</p>
+        <Link to={`/blogOwner/${user.data.userName}`}>All Posts </Link>
       </div>
     </div>
     </>)
 }
-export default Profile
+export default Profile;

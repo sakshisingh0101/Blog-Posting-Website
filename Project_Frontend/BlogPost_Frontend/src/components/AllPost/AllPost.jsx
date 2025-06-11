@@ -2,10 +2,13 @@ import React ,{useState,useEffect} from 'react'
 import axios from 'axios'
 import PostCard from '../Home/postContainer'
 import PostCard2 from './PostCard'
+import './loader.css'
 function AllPost()
 {   
     const [details,setDetails]=useState({ AllBlogPost: []})
+     const [loader,setLoader]=useState(false);
     useEffect(()=>{
+        setLoader(true);
         const getDetails=async()=>{
             try {
                 const response=await axios.get("/api/v1/blogs/getLoggedInUserAllPost",{ withCredentials: true })
@@ -18,12 +21,19 @@ function AllPost()
             } catch (error) {
                 console.log("Error: ",error);
                 alert("SOME ERROR HAS OCCURRED")
-            }
+            }finally{setLoader(false)}
         }
         getDetails();
     },[])
 
 console.log(details.AllBlogPost)
+if(loader)
+{
+    return  <>
+      <div className="loader"></div>
+      
+    </>
+}
 
 if(!details||details.AllBlogPost?.length===0)
 {

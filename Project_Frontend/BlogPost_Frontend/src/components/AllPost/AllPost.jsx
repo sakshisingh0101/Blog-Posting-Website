@@ -27,14 +27,15 @@ function AllPost()
     },[])
 
 console.log(details.AllBlogPost)
-if(loader)
+ if(loader)
 {
     return  <>
-      <div className="loader"></div>
+       <div className="loader-wrapper">
+    <div className="loader"></div>
+  </div>
       
     </>
 }
-
 if(!details||details.AllBlogPost?.length===0)
 {
    return  <p className="text-center text-white">No posts found.</p>

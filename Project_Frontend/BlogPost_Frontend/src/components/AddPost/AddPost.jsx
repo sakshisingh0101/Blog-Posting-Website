@@ -28,6 +28,15 @@ function AddPost()
         alert("Some error has occured")
        }finally {setLoaded(false)}
     }
+      if(loaded)
+{
+    return  <>
+       <div className="loader-wrapper">
+    <div className="loader"></div>
+  </div>
+      
+    </>
+}
     return (
         <>
          <div className="min-h-screen bg-gray-950 flex justify-center items-center px-4 py-10">

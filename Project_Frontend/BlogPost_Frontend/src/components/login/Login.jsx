@@ -39,6 +39,15 @@ function Login(){
         }finally{setLoaded(false)}
         
     }
+    if(loaded)
+{
+    return  <>
+       <div className="loader-wrapper">
+    <div className="loader"></div>
+  </div>
+      
+    </>
+}
 return (<>
 <div className="signup-container">
       <form className="signup-form"  onSubmit={(e)=>{

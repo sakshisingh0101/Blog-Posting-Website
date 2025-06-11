@@ -39,7 +39,7 @@ function Home(){
 
     if(!isLoggedIn)
     {
-        return <h1>Loggin to see the post</h1>
+        return <h1>Log in to see the post</h1>
     }
     if(allPost.length===0)
     {

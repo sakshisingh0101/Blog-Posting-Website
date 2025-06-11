@@ -2,6 +2,7 @@ import React, { useEffect,useState } from 'react'
 import {useParams} from 'react-router-dom'
 import PostCard from '../Home/postContainer'
 import axios from 'axios'
+import PostCard2 from '../AllPost/PostCard'
 function UserProfile()
 {   const {userName}=useParams()
     const [userDetails,setUserDetails]=useState({});
@@ -60,7 +61,7 @@ function UserProfile()
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {userDetails.AllBlogPost && userDetails.AllBlogPost.length > 0 ? (
                 userDetails.AllBlogPost.map((post, index) => (
-                  <PostCard key={index} post={post} />
+                  <PostCard2 key={index} post={post} />
                 ))
               ) : (
                 <p className="text-gray-500">No posts available.</p>

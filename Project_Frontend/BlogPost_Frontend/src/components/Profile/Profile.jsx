@@ -20,9 +20,9 @@ function Profile(){
     //     setIsLogin(useSelector(state=>state.auth.login_status))
     //     setUserData(useSelector(state => state.auth.userData));
     // },[])
-    if(!isLogin) {
-        return <h1> Please Login To see your Profile </h1>;
-    }
+    // if(!isLogin) {
+    //     return <h1> Please Login To see your Profile </h1>;
+    // }
     return (<>
      <div className="profile-container">
       <div className="cover-photo">

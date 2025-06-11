@@ -1,12 +1,15 @@
-import React, { useEffect } from 'react'
+import React, { use, useEffect } from 'react'
 import {useState} from 'react'
 import { useSelector } from 'react-redux';
 import PostCard from './postContainer.jsx';
 import axios from 'axios'
+import './home.css'
 function Home(){
     const [allPost,setAllPost]=useState([]);
     const isLoggedIn = useSelector(state => state.auth.login_status);
+    const [loader,setLoader]=useState(false)
     useEffect(()=>{
+        setLoader(true);
         const handlepost=async()=>{
             try {
                 const response=await axios.get("/api/v1/blogs/getAllPost",{ withCredentials: true })
@@ -20,10 +23,18 @@ function Home(){
             } catch (error) {
                 console.log("Error: " , error);
                 alert("SEREVR ERROR : POST NOT FETCHED FROM SERVER DUE TO SOME ERROR")
-            }
+            }finally{setLoader(false)}
         }
         handlepost();
     },[])
+  if(loader)
+{
+    return  <>
+      <div className="loader"></div>
+      
+    </>
+}
+
     if(!isLoggedIn)
     {
         return <h1>Loggin to see the post</h1>

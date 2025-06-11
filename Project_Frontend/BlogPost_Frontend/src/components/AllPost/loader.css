@@ -6,6 +6,8 @@
   width: 20px;
   height: 20px;
   animation: spin 0.8s linear infinite;
+  display: flex;
+  align-content: center;
 }
 
 @keyframes spin {

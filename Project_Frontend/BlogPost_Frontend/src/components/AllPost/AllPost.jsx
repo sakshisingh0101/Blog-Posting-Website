@@ -26,7 +26,7 @@ function AllPost()
         getDetails();
     },[])
 
-console.log(details.AllBlogPost)
+// console.log(details.AllBlogPost)
  if(loader)
 {
     return  <>

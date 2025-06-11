@@ -11,11 +11,11 @@ function Profile(){
     const isLogin=useSelector(state=>state.auth.login_status)
     const user=useSelector(state => state.auth.userData)
 
-        console.log("isLogin:", isLogin);
-    console.log("User data from Redux:", user); 
+    //     console.log("isLogin:", isLogin);
+    // console.log("User data from Redux:", user); 
 
 
-    console.log(user)
+    // console.log(user)
     // useEffect(()=>{
       
     //     setIsLogin(useSelector(state=>state.auth.login_status))

@@ -3,10 +3,13 @@ import {useParams} from 'react-router-dom'
 import PostCard from '../Home/postContainer'
 import axios from 'axios'
 import PostCard2 from '../AllPost/PostCard'
+import './loader.css'
 function UserProfile()
 {   const {userName}=useParams()
     const [userDetails,setUserDetails]=useState({});
+    const [loader,setLoader]=useState(false);
     useEffect(()=>{
+      setLoader(true)
         const gettingDetails=async()=>{
             try {
                 const response=await axios.get(`/api/v1/blogs/getUserAllPost/${userName}` ,{ withCredentials: true })
@@ -21,10 +24,20 @@ function UserProfile()
             } catch (error) {
                 console.log("Error: ", error);
                 
-            }
+            }finally{setLoader(false)}
         }
         gettingDetails();
     },[])
+     if(loader)
+{
+    return  <>
+       <div className="loader-wrapper">
+    <div className="loader"></div>
+  </div>
+      
+    </>
+}
+    
     if (!userDetails) {
         return <div className="text-center text-orange-400 mt-10">Loading user profile...</div>;
       }

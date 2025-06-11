@@ -7,6 +7,7 @@ function Profile(){
     // const [user,setUserData]=useState(null);
     
     // const [isLogin,setIsLogin]=useState(false);
+    
     const isLogin=useSelector(state=>state.auth.login_status)
     const user=useSelector(state => state.auth.userData)
 
@@ -23,6 +24,15 @@ function Profile(){
     // if(!isLogin) {
     //     return <h1> Please Login To see your Profile </h1>;
     // }
+//       if(loader)
+// {
+//     return  <>
+//        <div className="loader-wrapper">
+//     <div className="loader"></div>
+//   </div>
+      
+//     </>
+// }
     return (<>
      <div className="profile-container">
       <div className="cover-photo">

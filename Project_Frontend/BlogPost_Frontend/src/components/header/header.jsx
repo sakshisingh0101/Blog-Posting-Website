@@ -29,7 +29,7 @@ function Header(){
             slug:"/signup"
         },
         {
-            name:"All Post",
+            name:"My Post",
             slug:"/all_post"
         },
         {
@@ -53,7 +53,7 @@ function Header(){
                 }
                 { */}
         {headerComponents.map((link) => {
-  if (!isLogin && ["Logout", "All Post", "Add Post", "Profile"].includes(link.name)) {
+  if (!isLogin && ["Logout", "My Post", "Add Post", "Profile"].includes(link.name)) {
     return null;
   } else if (isLogin && ["Login", "SignUp"].includes(link.name)) {
     return null;

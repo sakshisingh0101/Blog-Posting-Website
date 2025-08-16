@@ -37,11 +37,11 @@ function Profile(){
      <div className="profile-container">
       <div className="cover-photo">
         
-        <img src={ user.data.coverImage? user.data.coverImage : null} alt="Cover" />
+        <img src={ user?.data?.coverImage? user.data.coverImage : null} alt="Cover" />
       </div>
       <div className="profile-content">
         <div className="avatar-box">
-          <img src={user.data.avtar} alt="Avatar" />
+          <img src={user?.data?.avtar ? user.data.avtar : null} alt="Avatar" />
         </div>
         <h2>Username: {user.data.userName}</h2>
         <p className="fullname">FullName: {user.data.firstName} {user.data.lastName}</p>

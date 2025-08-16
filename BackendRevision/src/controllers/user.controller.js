@@ -336,7 +336,7 @@ const updateCoverImage=asyncHandler(async(req,res)=>{
 const isLoggedIn=asyncHandler(async(req,res)=>{
     let token = req.cookies?.accessToken;
 
-        // ✅ If no token in cookies, check Authorization header
+        
         if (!token) {
             const tokenHeader = req.headers.authorization;
             if (!tokenHeader || !tokenHeader.startsWith("Bearer ")) {

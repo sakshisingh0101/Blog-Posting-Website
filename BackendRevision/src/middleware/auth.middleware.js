@@ -28,10 +28,10 @@ import { User } from "../models/user.models.js";
 
 export const verifyJwt = asyncHandler(async (req, res, next) => {
     try {  
-        // ✅ First, check token in cookies
+       
         let token = req.cookies?.accessToken;
 
-        // ✅ If no token in cookies, check Authorization header
+       
         if (!token) {
             const tokenHeader = req.headers.authorization;
             if (!tokenHeader || !tokenHeader.startsWith("Bearer ")) {
@@ -40,10 +40,10 @@ export const verifyJwt = asyncHandler(async (req, res, next) => {
             token = tokenHeader.replace("Bearer ", "").trim();
         }
 
-        // ✅ Verify token
+        
         const decodedInfo = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
-        // ✅ Find user in DB
+       
         const user = await User.findById(decodedInfo._id);
         if (!user) {
             throw new ApiError(401, "Invalid Access Token");

@@ -68,26 +68,33 @@ function SignUp(){
         handleSubmit();
       }}>
         <h2>Create Account</h2>
-
+        <label>First Name: </label>
         <input type="text" placeholder="First Name" name="FirstName"  onChange={(e)=>{
             setFirstName(e.target.value);
         }}/>
+        <label>Last Name: </label>
         <input type="text" placeholder="Last Name" name="LastName"  onChange={(e)=>{
             setLastName(e.target.value);
         }}/>
+        <label>User Name: </label>
         <input type="text" placeholder="User Name" name="UserName"  onChange={(e)=>{
             setUserName(e.target.value);
         }}/>
+        <label>Email: </label>
         <input type="email" placeholder="Email Address" name="email" onChange={(e)=>{
             setEmail(e.target.value);
         }}/>
+        <label>Password: </label>
         <input type="password" placeholder="Password" name="password" onChange={(e)=>{
             setPassword(e.target.value)
         }}/>
+        <label>Age: </label>
         <input type="text" placeholder="age" name="age" onChange={e=>(setAge(e.target.value))} />
+        <label>Avtar: </label>
         <input type="file" name="avtar" onChange={(e)=>{
             setAvtar(e.target.files[0])
         }} accept='image/*'/>
+        <label>CoverImage: </label>
         <input type="file" name="coverImage" onChange={e=>(setCoverImage(e.target.files[0])) } accept="image/*" />
 
         <button type="submit" disabled={loaded}>{loaded? 'Sign up in process' : 'Sign up'}</button>

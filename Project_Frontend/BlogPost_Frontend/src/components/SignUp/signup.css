@@ -247,7 +247,7 @@ body {
 }
 
 /* File input */
-.file-input {
+/* .file-input {
   margin: 18px 0;
 }
 .file-input label {
@@ -263,6 +263,34 @@ body {
   padding: 8px;
   border-radius: 5px;
   color: #fff;
+} */
+/*new changes*/
+.file-input {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 18px 0;
+}
+
+.signup-form .file-input label {
+  position: static;
+  color: #ccc;
+  font-size: 14px;
+}
+
+.signup-form .file-input input[type="file"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background: #2e2e2e;
+  color: #fff;
+}
+/*upto this*/
+
+/* Make sure floating-label styles never target file inputs */
+.form-group input[type="file"] + label { 
+  position: static !important; 
 }
 
 /* Button */

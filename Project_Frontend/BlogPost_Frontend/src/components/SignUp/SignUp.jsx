@@ -68,7 +68,7 @@ function SignUp(){
         handleSubmit();
       }}>
         <h2>Create Account</h2>
-        <label>First Name: </label>
+        {/* <label>First Name: </label>
         <input type="text" placeholder="First Name" name="FirstName"  onChange={(e)=>{
             setFirstName(e.target.value);
         }}/>
@@ -95,7 +95,59 @@ function SignUp(){
             setAvtar(e.target.files[0])
         }} accept='image/*'/>
         <label>CoverImage: </label>
-        <input type="file" name="coverImage" onChange={e=>(setCoverImage(e.target.files[0])) } accept="image/*" />
+        <input type="file" name="coverImage" onChange={e=>(setCoverImage(e.target.files[0])) } accept="image/*" /> */}
+          
+          <div className="form-group">
+  <input type="text" name="firstName" required
+    value={firstName}
+    onChange={(e) => setFirstName(e.target.value)} />
+  <label>First Name</label>
+</div>
+
+<div className="form-group">
+  <input type="text" name="lastName" required
+    value={lastName}
+    onChange={(e) => setLastName(e.target.value)} />
+  <label>Last Name</label>
+</div>
+
+<div className="form-group">
+  <input type="text" name="userName" required
+    value={userName}
+    onChange={(e) => setUserName(e.target.value)} />
+  <label>User Name</label>
+</div>
+
+<div className="form-group">
+  <input type="email" name="email" required
+    value={email}
+    onChange={(e) => setEmail(e.target.value)} />
+  <label>Email</label>
+</div>
+
+<div className="form-group">
+  <input type="password" name="password" required
+    value={password}
+    onChange={(e) => setPassword(e.target.value)} />
+  <label>Password</label>
+</div>
+
+<div className="form-group">
+  <input type="number" name="age" required
+    value={age}
+    onChange={(e) => setAge(e.target.value)} />
+  <label>Age</label>
+</div>
+
+<div className="form-group file-input">
+  <label>Avatar</label>
+  <input type="file" name="avtar" onChange={(e) => setAvtar(e.target.files[0])} accept="image/*" />
+</div>
+
+<div className="form-group file-input">
+  <label>Cover Image</label>
+  <input type="file" name="coverImage" onChange={(e) => setCoverImage(e.target.files[0])} accept="image/*" />
+</div>
 
         <button type="submit" disabled={loaded}>{loaded? 'Sign up in process' : 'Sign up'}</button>
 

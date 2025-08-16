@@ -94,4 +94,54 @@ body {
   .signin-link a:hover {
     text-decoration: underline;
   }
-  
+  .form-group {
+  position: relative;
+  margin: 20px 0;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  background-color: #2e2e2e;
+  color: white;
+  font-size: 15px;
+  outline: none;
+}
+
+.form-group label {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 14px;
+  pointer-events: none;
+  transition: 0.3s ease;
+}
+
+/* Floating effect when typing/focused */
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+  top: -8px;
+  left: 10px;
+  background: #2e2e2e;
+  padding: 0 5px;
+  color: #ffa500;
+  font-size: 12px;
+}
+
+/* File input special style */
+.file-input label {
+  position: static;
+  display: block;
+  margin-bottom: 6px;
+  color: #ccc;
+  font-size: 14px;
+}
+.file-input input {
+  background: transparent;
+  border: none;
+  color: #fff;
+}

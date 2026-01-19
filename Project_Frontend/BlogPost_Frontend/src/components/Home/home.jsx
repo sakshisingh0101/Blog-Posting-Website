@@ -37,14 +37,14 @@ function Home(){
     </>
 }
 
-    if(!isLoggedIn)
-    {
-        return <h1>Log in to see the post</h1>
-    }
-    if(allPost.length===0)
-    {
-        return <h1>Either Nothing is fetched from backend or no post is being posted till now</h1>
-    }
+    // if(!isLoggedIn)
+    // {
+    //     return <h1>Log in to see the post</h1>
+    // }
+    // if(allPost.length===0)
+    // {
+    //     return <h1>Either Nothing is fetched from backend or no post is being posted till now</h1>
+    // }
   
 
 return (
@@ -53,7 +53,7 @@ return (
       <h1 className="text-3xl text-orange-400 font-bold mb-6 text-center">All Posts</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {allPost.map((post, index) => (
-          <PostCard key={index} post={post} />
+          <PostCard key={post._id} post={post} />
         ))}
       </div>
     </div>

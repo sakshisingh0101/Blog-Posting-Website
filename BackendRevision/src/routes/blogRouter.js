@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { blogPost, deletePost, getAllPost, getLoggedInUserAllPost, getUserAllPost, getUserDetails, getUserProfile, updatePost } from "../controllers/blog.controller.js";
+import { blogPost, deletePost, getAllPost, getLoggedInUserAllPost, getpostbyid, getUserAllPost, getUserDetails, getUserProfile, updatePost } from "../controllers/blog.controller.js";
 import { upload } from "../middleware/multer.middleware.js";
 import { verifyJwt } from "../middleware/auth.middleware.js";
 
@@ -28,6 +28,7 @@ blogRouter.route("/getAllPost").get(getAllPost)
 blogRouter.route("/getUserProfile/:userName").get(verifyJwt,getUserProfile)
 blogRouter.route("/getUserAllPost/:userName").get(verifyJwt,getUserAllPost)
 blogRouter.route("/getLoggedInUserAllPost").get(verifyJwt,getLoggedInUserAllPost)
+blogRouter.route("/getPostbyID/:blogId").get(getpostbyid);
 
 
 

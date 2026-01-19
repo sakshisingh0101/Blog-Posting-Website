@@ -19,6 +19,8 @@ import { useDispatch } from 'react-redux'
 import { addUserData,login_status_toggle } from './authStore/authSlice.js'
 import axios from 'axios'
 import './axios.config.js'
+import BlogPost from './components/BlogPost/blogPost.jsx'
+import Editpost from './components/AllPost/editblogpost.jsx'
 
 
 
@@ -61,6 +63,15 @@ const router=createBrowserRouter(
       {
         path:'/blogOwner/:userName',
         element:<UserProfile/>
+      },
+      {
+           path:'/blogPostPageRender/:blogId',
+           element:<BlogPost/>
+
+      },
+      {
+        path:'/editpost/:blogId',
+        element:<Editpost/>
       }
     ]
   }]

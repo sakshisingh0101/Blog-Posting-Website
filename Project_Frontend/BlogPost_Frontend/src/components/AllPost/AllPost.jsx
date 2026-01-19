@@ -5,8 +5,8 @@ import PostCard2 from './PostCard'
 import './loader.css'
 function AllPost()
 {   
-    const [details,setDetails]=useState({ AllBlogPost: []})
-     const [loader,setLoader]=useState(false);
+    const [details,setDetails]=useState({ posts: [],totalPost: 0})
+     const [loader,setLoader]=useState(true);
     useEffect(()=>{
         setLoader(true);
         const getDetails=async()=>{
@@ -36,7 +36,7 @@ function AllPost()
       
     </>
 }
-if(!details||details.AllBlogPost?.length===0)
+if(!details||details.posts?.length===0)
 {
    return  <p className="text-center text-white">No posts found.</p>
        
@@ -49,8 +49,8 @@ if(!details||details.AllBlogPost?.length===0)
     <div className="min-h-screen bg-gray-950 p-6">
       <h1 className="text-3xl text-orange-400 font-bold mb-6 text-center">All Posts</h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {details.AllBlogPost.map((post, index) => (
-          <PostCard2 key={index} post={post} />
+        {details.posts.map((post, index) => (
+          <PostCard2 key={post._id} post={post} />
         ))}
       </div>
     </div>

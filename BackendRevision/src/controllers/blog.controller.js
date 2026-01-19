@@ -44,17 +44,17 @@ const blogPost=asyncHandler(async(req , res)=>{
 
 const updatePost = asyncHandler(async(req,res)=>{
     const {title,content}=req.body;
-    const {blog_id}=req.params;
+    const {blogId}=req.params;
     const user=req.user;
     console.log("title :" ,title)
     console.log("content:",content)
 
-    if(!blog_id)
+    if(!blogId)
     {
         throw new ApiError(401,"Invalid blog id")
     }
 
-    const blogPost=await Blog.findById(blog_id);
+    const blogPost=await Blog.findById(blogId);
     if(!blogPost)
     {
         throw new ApiError(401,"Incorrect blog id or may be blog doesn't exist")
@@ -269,65 +269,97 @@ res.status(200).json(
 )
 
 })
-const getLoggedInUserAllPost=asyncHandler(async(req,res)=>{
-    const existedUser=req.user
-    if(!existedUser)
-    {
-        throw new ApiError(401,"User not found")
-    }
+// const getLoggedInUserAllPost=asyncHandler(async(req,res)=>{
+//     const existedUser=req.user
+//     if(!existedUser)
+//     {
+//         throw new ApiError(401,"User not found")
+//     }
 
-    const user=await User.aggregate([
-        { 
-            $match:{
-            _id:existedUser._id
-           }
-        },
-        {
-            $lookup:{
-                from:"blogs",
-                localField:"_id",
-                foreignField:"owner",
-                as:"AllBlogPost",
-                // pipeline:[
-                //     {
-                //         $lookup:{
-                //             from:"users",
-                //             localField:"owner",
-                //             foreignField:"_id",
-                //             as:"owner"
-                //         }
-                //     },
-                //     {
-                //         $unwind:"owner"
-                //     }
-                // ]
-            }
-        },
-        {
-            $addFields:{
-                totalPost:{ 
-                    $size:"$AllBlogPost"
-                   }
-            }
-        },
-        {
-            $project:{
-                password:0,
-                refreshToken:0
-            }
-        }
-])
+//     const user=await User.aggregate([
+//         { 
+//             $match:{
+//             _id:existedUser._id
+//            }
+//         },
+//         {
+//             $lookup:{
+//                 from:"blogs",
+//                 localField:"_id",
+//                 foreignField:"owner",
+//                 as:"AllBlogPost",
+//                 // pipeline:[
+//                 //     {
+//                 //         $lookup:{
+//                 //             from:"users",
+//                 //             localField:"owner",
+//                 //             foreignField:"_id",
+//                 //             as:"owner"
+//                 //         }
+//                 //     },
+//                 //     {
+//                 //         $unwind:"owner"
+//                 //     }
+//                 // ]
+//             }
+//         },
+//         {
+//             $addFields:{
+//                 totalPost:{ 
+//                     $size:"$AllBlogPost"
+//                    }
+//             }
+//         },
+//         {
+//             $project:{
+//                 password:0,
+//                 refreshToken:0
+//             }
+//         }
+// ])
 
-    if(!user.length) 
-    {
-        throw new ApiError(400,"User document  not found ")
-    }
-    res.status(200).json(
-        new ApiResponse(200,"User Post Details fetched successfully",user[0])
-    )
+//     if(!user.length) 
+//     {
+//         throw new ApiError(400,"User document  not found ")
+//     }
+//     res.status(200).json(
+//         new ApiResponse(200,"User Post Details fetched successfully",user[0])
+//     )
     
 
+// })
+const getLoggedInUserAllPost = asyncHandler(async (req, res) => {
+  const user = req.user;
+  if (!user) {
+    throw new ApiError(401, "Unauthorized");
+  }
+
+  const posts = await Blog.find({ owner: user._id })
+    .populate("owner", "firstName lastName userName")
+    .sort({ createdAt: -1 });
+
+  res.status(200).json(
+    new ApiResponse(200, "Posts fetched successfully", {
+      posts,
+      totalPost: posts.length
+    })
+  );
+});
+
+const getpostbyid=asyncHandler(async(req,res)=>{
+    const {blogId}=req.params;
+     const blogPost = await Blog.findById(blogId)
+    .populate("owner", "firstName lastName");
+    if(!blogPost)
+    {
+        throw new ApiError(401,"Invalid Blog id");
+    }
+    
+    return res.status(200)
+               .json(new ApiResponse(200,"Successfully post fetched by id",blogPost));
+
+
 })
-export  {blogPost,updatePost,deletePost,getUserProfile,getUserAllPost,getLoggedInUserAllPost,getAllPost,getUserDetails};
+export  {blogPost,updatePost,deletePost,getUserProfile,getUserAllPost,getLoggedInUserAllPost,getAllPost,getUserDetails,getpostbyid};
 
 

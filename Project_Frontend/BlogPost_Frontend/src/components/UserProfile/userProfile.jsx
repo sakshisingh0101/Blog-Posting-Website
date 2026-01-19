@@ -4,6 +4,7 @@ import PostCard from '../Home/postContainer'
 import axios from 'axios'
 import PostCard2 from '../AllPost/PostCard'
 import './loader.css'
+import PostCard3 from './postcard3'
 function UserProfile()
 {   const {userName}=useParams()
     const [userDetails,setUserDetails]=useState({});
@@ -69,12 +70,13 @@ function UserProfile()
           </div>
     
           {/* User Posts */}
+          
           <div className="px-8 mt-12">
             <h2 className="text-2xl text-orange-400 font-semibold mb-6">Posts by {userDetails.userName}</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {userDetails.AllBlogPost && userDetails.AllBlogPost.length > 0 ? (
                 userDetails.AllBlogPost.map((post, index) => (
-                  <PostCard2 key={index} post={post} />
+                  <PostCard3 key={post._id} post={post} />
                 ))
               ) : (
                 <p className="text-gray-500">No posts available.</p>

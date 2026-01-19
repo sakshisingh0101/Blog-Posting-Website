@@ -68,7 +68,7 @@ button:focus-visible {
   }
 }
 
-html, body, #root {
+html,  #root {
   height: 100%;
   margin: 0;
 }
@@ -82,6 +82,7 @@ html, body, #root {
 .app-content {
   flex: 1;          /* THIS is the magic */
   display: flex;
+   flex-direction: column;
   padding-top: 64px;
   
 }

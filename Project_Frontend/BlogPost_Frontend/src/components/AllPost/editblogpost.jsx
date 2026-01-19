@@ -22,10 +22,11 @@ function Editpost() {
   useEffect(() => {
     const fetchPost = async () => {
       try {
-        const response = await axios.get(
-          `/api/v1/blogs/getPostbyID/${blogId}`,
-          { withCredentials: true }
-        );
+       const response = await axios.get(`/api/v1/blogs/getPostbyID/${blogId}`, {
+        withCredentials: true,
+       
+        });
+
         const data = response.data.data;
         setPost(data);
         setTitle(data.title);
@@ -66,7 +67,7 @@ function Editpost() {
       formData.append("content", content);
       if (postImage) formData.append("postImage", postImage);
 
-      const response = await axios.put(
+      const response = await axios.post(
         `/api/v1/blogs/updatePost/${blogId}`,
         formData,
         {

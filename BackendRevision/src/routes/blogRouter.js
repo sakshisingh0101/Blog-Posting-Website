@@ -16,7 +16,7 @@ blogRouter.route("/blogPost").post(
     verifyJwt,
     blogPost
 )
-blogRouter.route("/updatePost/:blog_id").post(upload.fields([
+blogRouter.route("/updatePost/:blogId").post(upload.fields([
     {
         name:"postImage",
         maxCount:1

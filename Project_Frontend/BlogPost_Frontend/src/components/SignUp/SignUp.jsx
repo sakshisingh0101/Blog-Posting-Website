@@ -63,6 +63,7 @@ function SignUp(){
 }
     return (<>
     <div className="signup-container">
+       <div className="signup-form-wrapper">
       <form className="signup-form"  onSubmit={(e)=>{
         e.preventDefault()
         handleSubmit();
@@ -162,6 +163,7 @@ function SignUp(){
           Already have an account? <Link to="/login" className="hover:underline">Log in</Link>
         </p>
       </form>
+      </div>
     </div>
     </>)
 }

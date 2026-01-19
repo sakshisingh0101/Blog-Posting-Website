@@ -39,7 +39,9 @@ function Header(){
     ]
   
     return (<>
-          <header className="bg-gradient-to-r from-orange-500 to-gray-700 shadow-md">
+          <header className="h-16 bg-gradient-to-r from-orange-500 to-gray-700 shadow-md fixed top-0 left-0 right-0 z-50">
+            
+
       <div className="container mx-auto px-4 py-3 flex justify-between items-center text-white">
         <h1 className="text-2xl font-bold">MyBlog</h1>
         <nav className="space-x-4 font-medium">

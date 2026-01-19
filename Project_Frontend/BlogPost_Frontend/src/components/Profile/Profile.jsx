@@ -12,7 +12,7 @@ function Profile(){
     const user=useSelector(state => state.auth.userData)
 
     //     console.log("isLogin:", isLogin);
-    // console.log("User data from Redux:", user); 
+    console.log("User data from Redux:", user); 
 
 
     // console.log(user)

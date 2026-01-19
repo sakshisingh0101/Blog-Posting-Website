@@ -87,11 +87,24 @@ const registerUser=asyncHandler(async (req , res)=>{
         coverImage:coverImageResponse? coverImageResponse.url : ""  ,
     })
     const {accessToken,refreshToken}=await generateAccessAndRefreshToken(user._id)
-    const option={
-        httpOnly:true,
-        secure:process.env.NODE_ENV==='production',
-        sameSite:'None'
-    }
+    // const option={
+    //     httpOnly:true,
+    //     secure:process.env.NODE_ENV==='production',
+    //     sameSite:'None'
+    // }
+    const option =
+  process.env.NODE_ENV === "production"
+    ? {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+      }
+    : {
+        httpOnly: true,
+        secure: false,
+        sameSite: "Lax",
+      };
+
 
     const usercreated=await User.findById(user._id).select(
         "-password -refreshToken"
@@ -158,15 +171,28 @@ const loginUser=asyncHandler(async(req,res)=>{
     );
     
 
-    const option={
-        httpOnly:true,
-        secure:process.env.NODE_ENV === 'production',
-        sameSite: 'None'
-    }
+    // const option={
+    //     httpOnly:true,
+    //     secure:process.env.NODE_ENV === 'production',
+    //     sameSite: 'None'
+    // }
+    const option =
+  process.env.NODE_ENV === "production"
+    ? {
+        httpOnly: true,
+        secure: true,
+        sameSite: "None",
+      }
+    : {
+        httpOnly: true,
+        secure: false,
+        sameSite: "Lax",
+      };
+
 
     res.status(200)
     .cookie("accessToken", accessToken,option)
-    .cookie("refershToken", refreshToken,option)
+    .cookie("refreshToken", refreshToken,option)
     .json(
         new ApiResponse(200,"User Logged In Successfuly",{
             data:user,refreshToken,accessToken
